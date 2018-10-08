@@ -1,0 +1,101 @@
+.App {
+  box-sizing: border-box;
+  width: 100%;
+  /* border: 10px solid blue; */
+  margin: 0%;
+  padding: 0%;
+}
+
+.App-header {
+  /* border: 5px solid red; */
+  width: 100%;
+  background-color: #3e3e3e;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 25px;
+  padding: 8px 20px 10px 10px;
+  color: #cccccc;
+  font-size: 80%;
+}
+
+.App-title {
+  /* border: 1px solid white; */
+  padding: 5px 8px 10px 10px;
+}
+
+.App-task {
+  border: 1px solid #cccccc;
+  padding: 5px 8px 10px 10px;
+}
+
+.category {
+  /* border: 5px solid peachpuff; */
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  /* border: 5px solid green; */
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
+
+.columncenter {
+  /* border: 5px solid green; */
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
+
+.items {
+  /* border: 5px solid purple; */
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  font-size: 75%;
+}
+
+.card {
+  border: 1px solid orange;
+  background-color: peachpuff;
+  padding: 1%;
+  margin: 3%;
+}
+
+.infostrong {
+  /* border:  5px solid gold; */
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.info {
+  /* border: 5px solid gold; */
+}
+
+.emp {
+  /* border: 5px solid blueviolet; */
+  display: flex;
+  /* justify-content: flex-end; */
+  /* align-items: flex-start; */
+}
+
+.edit {
+  /* border: 5px solid pink; */
+  color: orange;
+  margin: 1%;
+}
+
+.worker {
+  /* border: 5px solid red; */
+  display: flex;
+  justify-self: flex-end;
+  margin: 1%;
+}
