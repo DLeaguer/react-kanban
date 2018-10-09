@@ -29,16 +29,34 @@ class App extends Component {
         
         {/* CATEGORY */}
         <div className="category">
-          <div className='column'>IN QUEUE</div>
-          <div className='column'>IN PROGRESS</div>
-          <div className='column'>DONE</div>
+          <div className='cat'>
+            <div className='column'>IN QUEUE</div>
+              
+              {/* CARDS */}
+              <div className='items'>
+                <Cards items={this.state.items}/>
+              </div>
+
+          </div>
+          <div className='cat'>
+            <div className='column'>IN PROGRESS</div>
+
+              {/* CARDS */}
+              <div className='items'>
+                <Cards items={this.state.items}/>
+              </div>
+
+          </div>
+          <div className='cat'>
+            <div className='column'>DONE</div>
+
+              {/* CARDS */}
+              <div className='items'>
+                <Cards items={this.state.items}/>
+              </div>
+
+          </div>  
         </div>
-        
-        {/* CARDS */}
-        <div className='items'>
-          <Cards items={this.state.items}/>
-        </div>
-        
       </div>
     )
   }
