@@ -30,7 +30,7 @@ class App extends Component {
         {/* CATEGORY */}
         <div className="category">
           <div className='column'>IN QUEUE</div>
-          <div className='columncenter'>IN PROGRESS</div>
+          <div className='column'>IN PROGRESS</div>
           <div className='column'>DONE</div>
         </div>
         
