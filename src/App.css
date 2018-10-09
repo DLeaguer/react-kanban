@@ -41,29 +41,30 @@
 
 .cat {
   border: 5px solid palevioletred;
+  width: 32.5%;
 }
 
 .column {
   border: 5px solid green;
-  width: 32.2%;
+  width: 32.5%;
   display: flex;
   justify-content: center;
   padding: .5% 33% .5% 33%;
   /* border-right: 1px solid #cccccc; */
 }
 
-.columncenter {
+/* .columncenter {
   border: 5px solid green;
-  /* width: 33%; */
+  width: 33%;
   display: flex;
   justify-content: center;
   padding: .5%;
-  /* border-left: 1px solid #cccccc; */
-  /* border-right: 1px solid #cccccc; */
-}
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+} */
 
 .items {
-  border: 5px solid purple;
+  border: 5px solid cornflowerblue;
   /* border-left: 1px solid #cccccc; */
   /* border-right: 1px solid #cccccc; */
   /* width: 33.2%; */

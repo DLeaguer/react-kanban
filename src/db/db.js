@@ -1,20 +1,47 @@
-let itemsFromFakeDB = [{
+let itemsFromFakeDB = [
+{
   id: 1,
-  description: 'Make Better Styles.',
+  description: '1 Make Better Styles.',
   priority: 'Medium',
   by: 'Jon',
-  to: 'Renee'
+  to: 'Renee',
+  type: 'queue'
 },
 {
   id: 2,
-  description: 'Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  description: '2 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
   priority: 'Medium',
   by: 'Jon',
-  to: 'Renee'
+  to: 'Renee',
+  type: 'queue'
+},
+{
+  id: 3,
+  description: '3 Make Better Styles.',
+  priority: 'Medium',
+  by: 'Jon',
+  to: 'Renee',
+  type: 'progress'
+},
+{
+  id: 4,
+  description: '4 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  priority: 'Medium',
+  by: 'Jon',
+  to: 'Renee',
+  type: 'done'
+},
+{
+  id: 5,
+  description: '5 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  priority: 'Medium',
+  by: 'Jon',
+  to: 'Renee',
+  type: 'done'
 }
 ]
 
-let newId = 3
+let newId = 6
 
 export const getItemsFromFakeXHR = () => new Promise((resolve, reject) => {
 setTimeout( () => {
