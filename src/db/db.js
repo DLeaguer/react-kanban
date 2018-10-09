@@ -1,43 +1,48 @@
 let itemsFromFakeDB = [
 {
   id: 1,
-  description: '1 Make Better Styles.',
+  title: '1 Make Better Styles.',
+  body: 'body 1',
   priority: 'Medium',
+  type: 'queue',
   by: 'Jon',
-  to: 'Renee',
-  type: 'queue'
+  to: 'Renee'
 },
 {
   id: 2,
-  description: '2 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  title: '2 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  body: 'body 2',
   priority: 'Medium',
+  type: 'queue',
   by: 'Jon',
-  to: 'Renee',
-  type: 'queue'
+  to: 'Renee'
 },
 {
   id: 3,
-  description: '3 Make Better Styles.',
+  title: '3 Make Better Styles.',
+  body: 'body 3',
   priority: 'Medium',
+  type: 'progress',
   by: 'Jon',
-  to: 'Renee',
-  type: 'progress'
+  to: 'Renee'
 },
 {
   id: 4,
-  description: '4 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  title: '4 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  body: 'body 4',
   priority: 'Medium',
+  type: 'done',
   by: 'Jon',
-  to: 'Renee',
-  type: 'done'
+  to: 'Renee'
 },
 {
   id: 5,
-  description: '5 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  title: '5 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
+  body: 'body 5',
   priority: 'Medium',
+  type: 'done',
   by: 'Jon',
-  to: 'Renee',
-  type: 'done'
+  to: 'Renee'
 }
 ]
 

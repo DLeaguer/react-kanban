@@ -63,7 +63,6 @@ class App extends Component {
                 <Cards1 items={this.state.items}/>
               </div>
 
-
           </div>
           <div className='cat'>
             <div className='column'>IN PROGRESS</div>
@@ -94,7 +93,11 @@ function Cards1(props) {
   <div key={item.id} className='card'>
 
     <div className='infostrong'> 
-      {item.description} 
+      {item.title} 
+    </div>
+
+    <div className='info'>
+      {item.body}
     </div>
     
     <div className='info'> 
@@ -119,7 +122,11 @@ function Cards2(props) {
   <div key={item.id} className='card'>
 
     <div className='infostrong'> 
-      {item.description} 
+      {item.title} 
+    </div>
+    
+    <div className='info'>
+      {item.body}
     </div>
     
     <div className='info'> 
@@ -144,7 +151,11 @@ function Cards3(props) {
   <div key={item.id} className='card'>
 
     <div className='infostrong'> 
-      {item.description} 
+      {item.title} 
+    </div>
+    
+    <div className='info'>
+      {item.body}
     </div>
     
     <div className='info'> 
