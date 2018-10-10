@@ -9,16 +9,9 @@ class App extends Component {
     this.state = {
       items: []
     }
-    this.addItem = this.addItem.bind(this);
-    this.updateStateFromDb = this.updateStateFromDb.bind(this);
-    this.deleteItemById = this.deleteItemById.bind(this);
   }
 
   componentDidMount() {
-    this.updateStateFromDb()
-  }
-
-  updateStateFromDb() {
     getItemsFromFakeXHR()
       .then( items => {
         this.setState({items}, () => {
@@ -27,21 +20,6 @@ class App extends Component {
       })
   }
 
-  addItem(item) {
-    addItemToFakeXHR(item)
-    .then( items => {
-      this.setState( {items })
-    })
-  }
-
-  deleteItemById(itemId) {
-    console.log('BALETED')
-    deleteItemByIdFromFakeXHR(itemId)
-    .then( result => {
-      this.updateStateFromDb()
-    })
-  }
-    
   render() {
     console.log('>>> this.state.items =', this.state.items)
     return (
@@ -90,7 +68,7 @@ class App extends Component {
 
 function Cards1(props) {
   return props.items.filter( item => item.type === 'queue').map( item => 
-  <div key={item.id} id='queuecards' className='card'>
+  <div key={item.id} className='card'>
 
     <div className='infostrong'> 
       {item.title} 
@@ -111,7 +89,6 @@ function Cards1(props) {
     <div className='emp'>
       <div className='edit'> Edit </div>
       <div className='edit'> Delete </div>
-      <div className="blank"></div>
       <div className='worker'> {item.to} </div> 
     </div>
     
@@ -120,7 +97,7 @@ function Cards1(props) {
 
 function Cards2(props) {
   return props.items.filter( item => item.type === 'progress').map( item => 
-  <div key={item.id} id='progresscards' className='card'>
+  <div key={item.id} className='card'>
 
     <div className='infostrong'> 
       {item.title} 
@@ -139,9 +116,8 @@ function Cards2(props) {
     </div>
     
     <div className='emp'>
-      <div id='progressedit' className='edit'> Edit </div>
-      <div id='progressedit' className='edit'> Delete </div>
-      <div className="blank"></div>
+      <div className='edit'> Edit </div>
+      <div className='edit'> Delete </div>
       <div className='worker'> {item.to} </div> 
     </div>
     
@@ -150,7 +126,7 @@ function Cards2(props) {
 
 function Cards3(props) {
   return props.items.filter( item => item.type === 'done').map( item => 
-  <div key={item.id} id='donecards' className='card'>
+  <div key={item.id} className='card'>
 
     <div className='infostrong'> 
       {item.title} 
@@ -169,9 +145,8 @@ function Cards3(props) {
     </div>
     
     <div className='emp'>
-      <div id='doneedit' className='edit'> Edit </div>
-      <div id='doneedit' className='edit'> Delete </div>
-      <div className="blank"></div>
+      <div className='edit'> Edit </div>
+      <div className='edit'> Delete </div>
       <div className='worker'> {item.to} </div> 
     </div>
     
