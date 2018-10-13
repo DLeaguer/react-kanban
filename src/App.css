@@ -24,6 +24,12 @@
   margin: 12px 0px 12px 12px;
 }
 
+.App-cards {
+  /* border: 1px solid white; */
+  margin: 12px 0px 12px 12px;
+  color: #cccccc;
+}
+
 .App-task {
   border: 1px solid #cccccc;
   padding: 3px 10px 0px 10px;
@@ -54,7 +60,7 @@
 
 #progresscards {
   border: 1px solid green;
-  background-color: lightgreen;
+  background-color: rgb(183, 221, 112);
 }
 
 #progressedit {
@@ -113,12 +119,14 @@
 
 .blank {
   /* border: 5px solid greenyellow; */
-  margin: 1% 28% 1% 28%;
+  /* margin: 1% 28% 1% 28%; */
 }
 
 .worker {
   /* border: 5px solid red; */
   display: flex;
+  width: 75%;
   justify-content: flex-end;
+  /* text-align: right; */
   margin: 1%;
 }
