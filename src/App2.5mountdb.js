@@ -1,127 +1,83 @@
 import React, { Component } from 'react';
 import './App.css';
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-// eslint-disable-next-line
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/db';
-import axios from 'axios';
+import { getItemsFromFakeXHR } from './db/db';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: [],
+      items: [],
       hasItems: true
     }
   }
     
   // Linked to AddForm in render & handleSubmit in AddForm Component
   addItemToInventory = (newItem) => {
-    // this.setState( state => {
-    //   return { items: [...state.items, newItem]}
-    // })
-    
+    this.setState( state => {
+      return { items: [...state.items, newItem]}
+    })
   }
 
-  // addItemToInventory = (item) => {
-  //   addItemToFakeXHR(item)
-  //     .then( items => {
-  //       if (items) {
-  //         this.setState( { items } )
-  //       }
-  //     })
-  // }
- 
   componentDidMount() {
-    // getItemsFromFakeXHR()
-    //   .then( items => {
-    //     this.setState( {items} )
-    //   }, function() {
-    //     console.log('componentDidMount this.state updated', this.state)
-    //   })
-    axios
-    .get('/tasks')
-    .then( tasks => {
-      console.log('tasks', tasks)
-      this.setState( {tasks: tasks.data})
-    })
-    .catch( err => {
-      console.log('err', err)
-    })
+    getItemsFromFakeXHR()
+      .then( items => {
+        this.setState( {items} )
+      }, function() {
+        console.log('componentDidMount this.state updated', this.state)
+      })
   }
   
+  // renderCategory() {
+  //   if (this.state.hasItems) {
+  //     return <Category items={this.state.items}/>
+  //   }
+  //   else {
+  //     return null
+  //   }
+  // }
+
   render() {
-    console.log('App render this.state.tasks', this.state.tasks)
+    console.log('App render this.state.items', this.state.items)
     return (
       <div className="App">
       
         {/* HEADER */}
         <header className="App-header">
           <div className="App-title">KANBAN</div>
-          <Router>
-            <div>
-              <Link className='App-task' to='/newTask'>+ NEW TASK</Link>
-              <Route path='/newTask' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
-            </div>
-          </Router>
-          {/* <div className="App-task">+ NEW TASK</div> */}
+          <div className="App-task">+ NEW TASK</div>
         </header>
-        <Router>
-          <div>
-            <Link className='App-title' to='/home'>Home</Link>
-            <Link className='App-title' to='/about/123'>About</Link>
-            <Link className='App-title' to='/addForm'>Add Form</Link>
-            <Link className='App-title' to='/kanban'>Kanban</Link>
-            <Route path='/home' component={Home}/>
-            <Route path='/about/:id' component={About}/>
-            <Route path='/addForm' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
-            <Route path='/kanban' component={ () => <Category tasks={this.state.tasks}/>}/>
-          </div>
-        </Router>
-        {/* <Category items={this.state.items}/> */}
-        {/* <AddForm addItem={this.addItemToInventory}/> */}
+        {/* {this.state.hasItems ? <Category items={this.state.items}/> : null } */}
+        {/* {this.renderCategory()} */}
+        <Category items={this.state.items}/>
+        <AddForm addItem={this.addItemToInventory}/>
       </div>
     )
   }
 }
 
-function Home(props) {
-  console.log('props', props)
-  return <div>MY FAKE HOME COMPONENT HERE</div>
-}
-
-function About(props) {
-  console.log('props', props)
-  return <div>MY FAKE ABOUT COMPONENT HERE</div>
-}
-
-// function AddForm(props) {
-//   return <div>MY FAKE ABOUT COMPONENT HERE</div>
-// }
-
 class Category extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: []
+      items: []
     }
   }
 
   render() {
-    console.log('Category render this.props.tasks', this.props.tasks)
+    console.log('Category render this.props.items', this.props.items)
     return (
       <div className="category">
         <div className='cat'>
           <div className='column'>IN QUEUE</div>
-            <Cards1 tasks={this.props.tasks}/>
+            <Cards1 items={this.props.items}/>
         </div>
         <div className='cat'>
           <div className='column'>IN PROGRESS</div>
-            <Cards2 tasks={this.props.tasks}/>
+            <Cards2 items={this.props.items}/>
         </div>
         <div className='cat'>
             <div className='column'>DONE</div>
-              <Cards3 tasks={this.props.tasks}/>
+              <Cards3 items={this.props.items}/>
         </div>  
       </div>
     )
@@ -129,8 +85,7 @@ class Category extends Component {
 }
 
 function Cards1(props) {
-  console.log('Cards1 props', props)
-  return props.tasks.filter( result => result.type === 'queue')
+  return props.items.filter( result => result.type === 'queue')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='queuecards' className='card'>
@@ -149,7 +104,7 @@ function Cards1(props) {
 }
 
 function Cards2(props) {
-  return props.tasks.filter( result => result.type === 'progress')
+  return props.items.filter( result => result.type === 'progress')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='progresscards' className='card'>
@@ -168,7 +123,7 @@ function Cards2(props) {
 }
 
 function Cards3(props) {
-  return props.tasks.filter( result => result.type === 'done')
+  return props.items.filter( result => result.type === 'done')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='donecards' className='card'>

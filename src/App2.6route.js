@@ -4,54 +4,34 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // eslint-disable-next-line
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/db';
-import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: [],
+      items: [],
       hasItems: true
     }
   }
     
   // Linked to AddForm in render & handleSubmit in AddForm Component
   addItemToInventory = (newItem) => {
-    // this.setState( state => {
-    //   return { items: [...state.items, newItem]}
-    // })
-    
+    this.setState( state => {
+      return { items: [...state.items, newItem]}
+    })
   }
-
-  // addItemToInventory = (item) => {
-  //   addItemToFakeXHR(item)
-  //     .then( items => {
-  //       if (items) {
-  //         this.setState( { items } )
-  //       }
-  //     })
-  // }
  
   componentDidMount() {
-    // getItemsFromFakeXHR()
-    //   .then( items => {
-    //     this.setState( {items} )
-    //   }, function() {
-    //     console.log('componentDidMount this.state updated', this.state)
-    //   })
-    axios
-    .get('/tasks')
-    .then( tasks => {
-      console.log('tasks', tasks)
-      this.setState( {tasks: tasks.data})
-    })
-    .catch( err => {
-      console.log('err', err)
-    })
+    getItemsFromFakeXHR()
+      .then( items => {
+        this.setState( {items} )
+      }, function() {
+        console.log('componentDidMount this.state updated', this.state)
+      })
   }
   
   render() {
-    console.log('App render this.state.tasks', this.state.tasks)
+    console.log('App render this.state.items', this.state.items)
     return (
       <div className="App">
       
@@ -75,7 +55,7 @@ class App extends Component {
             <Route path='/home' component={Home}/>
             <Route path='/about/:id' component={About}/>
             <Route path='/addForm' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
-            <Route path='/kanban' component={ () => <Category tasks={this.state.tasks}/>}/>
+            <Route path='/kanban' component={ () => <Category items={this.state.items}/>}/>
           </div>
         </Router>
         {/* <Category items={this.state.items}/> */}
@@ -103,25 +83,25 @@ class Category extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: []
+      items: []
     }
   }
 
   render() {
-    console.log('Category render this.props.tasks', this.props.tasks)
+    console.log('Category render this.props.items', this.props.items)
     return (
       <div className="category">
         <div className='cat'>
           <div className='column'>IN QUEUE</div>
-            <Cards1 tasks={this.props.tasks}/>
+            <Cards1 items={this.props.items}/>
         </div>
         <div className='cat'>
           <div className='column'>IN PROGRESS</div>
-            <Cards2 tasks={this.props.tasks}/>
+            <Cards2 items={this.props.items}/>
         </div>
         <div className='cat'>
             <div className='column'>DONE</div>
-              <Cards3 tasks={this.props.tasks}/>
+              <Cards3 items={this.props.items}/>
         </div>  
       </div>
     )
@@ -129,8 +109,7 @@ class Category extends Component {
 }
 
 function Cards1(props) {
-  console.log('Cards1 props', props)
-  return props.tasks.filter( result => result.type === 'queue')
+  return props.items.filter( result => result.type === 'queue')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='queuecards' className='card'>
@@ -149,7 +128,7 @@ function Cards1(props) {
 }
 
 function Cards2(props) {
-  return props.tasks.filter( result => result.type === 'progress')
+  return props.items.filter( result => result.type === 'progress')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='progresscards' className='card'>
@@ -168,7 +147,7 @@ function Cards2(props) {
 }
 
 function Cards3(props) {
-  return props.tasks.filter( result => result.type === 'done')
+  return props.items.filter( result => result.type === 'done')
   .map( card => 
     <div key={card.id} className='items'>
       <div id='donecards' className='card'>
