@@ -3,9 +3,12 @@ const app = express()
 const PORT = process.env.EXPRESS_CONTAINER_PORT || 9999
 const path = require('path')
 const Tasks = require('./db/models/tasks.js');
+const bodyParser = require("body-parser");
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 
-
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../build')))
 
 app.get('/', (req, res) => {
@@ -14,27 +17,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/tasks', (req, res) => {
-  // res.json({
-  //   items: [{
-  //       id: 1,
-  //       name: 'A Large Healing Potion',
-  //       weight: 0.1,
-  //       type: 'consumable'
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Wirts Leg',
-  //       weight: 10,
-  //       type: 'weapon'
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Dreamwalker Spaulders',
-  //       weight: 2,
-  //       type: 'armor'
-  //     }
-  //   ]
-  // })
   Tasks
   .fetchAll()
   .then( items => {
@@ -43,6 +25,42 @@ app.get('/tasks', (req, res) => {
   .catch( err => {
     console.log('error', err)
   })
+})
+
+app.post('/newTask', (req, res) => {
+  console.log('\nPOSTING!!!!!')
+  console.log('\nreq.body!!!!!\n')
+  console.log(req.body)
+  const task = req.body
+  console.log('\ntask!!!!!\n')
+  console.log(task)
+  const newTask = {
+    title: task.title,
+    body: task.body,
+    priority: task.priority,
+    type: task.type,
+    by: task.by,
+    to: task.to
+  }
+  console.log('\nnewTask!!!!!\n')
+  console.log(newTask)
+  Tasks
+  .forge(newTask)
+  .save()
+  .then( () => {
+    return Tasks
+    .fetchAll()
+    .then( result => {
+      res.json(result.serialize())
+    })
+    .catch( err => {
+      console.log('err server.js POST/newTask', err)
+    })
+  })
+})
+
+app.delete('/deleteTask/:id', (req, res) => {
+
 })
 
 app.listen(PORT, () => {
