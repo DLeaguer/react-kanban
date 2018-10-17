@@ -34,18 +34,16 @@ class App extends Component {
     console.log('App render this.state.items', this.state.items)
     return (
       <div className="App">
-      
-        {/* HEADER */}
-        <header className="App-header">
-          <div className="App-title">KANBAN</div>
-          <Router>
-            <div>
-              <Link className='App-task' to='/newTask'>+ NEW TASK</Link>
-              <Route path='/newTask' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
-            </div>
-          </Router>
-          {/* <div className="App-task">+ NEW TASK</div> */}
-        </header>
+        <Router>
+          <header className="App-header">
+            <Link className="App-title" to='/'>KANBAN</Link>
+            <Link className='App-task' to='/newTask'>+ NEW TASK</Link>
+            <Route path='/' component={Localhost}/>
+            <Route path='/newTask' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
+            {/* <div className="App-title">KANBAN</div> */}
+            {/* <div className="App-task">+ NEW TASK</div> */}
+          </header>
+        </Router>
         <Router>
           <div>
             <Link className='App-title' to='/home'>Home</Link>
@@ -63,6 +61,10 @@ class App extends Component {
       </div>
     )
   }
+}
+
+function Localhost(props) {
+  return <div></div>
 }
 
 function Home(props) {

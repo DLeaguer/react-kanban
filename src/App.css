@@ -7,10 +7,15 @@
   padding: 0px;
 }
 
+img {
+  width: 100%;
+  height: 100%;
+}
+
 .App-header {
   /* border: 5px solid red; */
   width: 100%;
-  background-color: #3e3e3e;
+  background-color: #cccccc;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -21,7 +26,20 @@
 
 .App-title {
   /* border: 1px solid white; */
-  margin: 12px 0px 12px 12px;
+  margin: 12px 12px 12px 12px;
+  /* color: #cccccc; */
+}
+
+.App-title-active {
+  color: red;
+  font-weight: bold;
+}
+
+.route {
+  /* border: 1px solid #3e3e3e; */
+  display: flex;
+  flex-direction: row;
+  /* margin: 0px; */
 }
 
 .App-cards {
@@ -47,6 +65,7 @@
   /* border: 5px solid palevioletred; */
   width: 32.5%;
   border-left: 1px solid #3e3e3e;
+  /* border-top: 1px solid #3e3e3e */
 }
 
 .column {
@@ -139,4 +158,28 @@
   justify-content: flex-end;
   /* text-align: right; */
   margin: 1%;
+}
+
+.addForm {
+  /* border: 1px solid blue; */
+  margin: 0% 43%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-content: center; */
+}
+
+.App-logo {
+  /* border: 1px solid #3e3e3e; */
+  animation: App-logo-spin infinite 5s linear;
+  height: 5vmin;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
