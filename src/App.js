@@ -36,6 +36,26 @@ class App extends Component {
       console.log('err axios POST/newTask', err)
     })
   }
+
+  deleteItemFromInventory = (deleteItem) => {
+    console.log('deleteItemFromInventory deleteItem', deleteItem)
+    axios
+    .delete('/delete/:id', deleteItem)
+    .then( results => {
+      console.log('deleteItem results', results)
+      this.setState( {tasks: results.data} )
+    })
+  }
+
+  editItemFromInventory = (editItem) => {
+    console.log('editItemFromInventory editItem', editItem)
+    axios
+    .put('/edit/:id', editItem)
+    .then( results => {
+      console.log('editItem results', results)
+      this.setState( {tasks: results.data} )
+    })
+  }
  
   render() {
     console.log('App render this.state.tasks', this.state.tasks)
@@ -46,11 +66,11 @@ class App extends Component {
           <header className="App-header">
               <Link className="App-title" to='/' activeclassname='App-title-active'>KANBAN</Link>
               <div className="route">
-                <Link className='App-title'  to='/sample'>Sample</Link>
+                <Link className='App-title' to='/sample'>Sample</Link>
                 <Link className='App-title' to='/about/123'>About</Link>
                 <Link className='App-title' to='/kanban'>Kanban board</Link>
               </div>
-              <Link className='App-title' to='/newTask'>+ NEW TASK</Link>
+              <Link className='App-task' to='/newTask'>+ NEW TASK</Link>
             </header>
             
             <hr />
@@ -143,8 +163,14 @@ function Cards1(props) {
         <div className='info'>Priority: {card.priority}</div> 
         <div className='info'>Assigned by: {card.by} </div>
         <div className='emp'>
-          <div id='queueedit' className='edit'>Edit</div>
-          <div id='queueedit' className='edit'>Delete</div>
+          <Router>
+            <div>
+              <Link id='queueedit' className='edit' to={`/edit/${card.id}`}>Edit</Link>
+              <Link id='queueedit' className='edit' to={`/delete/${card.id}`}>Delete</Link>
+              <Route path='/edit/:id' component={props.editItemFromInventory}/>
+              <Route path='/delete/:id' component={props.deleteItemFromInventory}/>
+            </div>
+          </Router>
           <div className='worker'>{card.to}</div> 
         </div>
       </div>
@@ -162,8 +188,14 @@ function Cards2(props) {
         <div className='info'>Priority: {card.priority}</div> 
         <div className='info'>Assigned by: {card.by}</div>
         <div className='emp'>
-          <div id='progressedit' className='edit'> Edit </div>
-          <div id='progressedit' className='edit'> Delete </div>
+          <Router>
+            <div>
+              <Link id='progressedit' className='edit' to={`/edit/${card.id}`}>Edit</Link>
+              <Link id='progressedit' className='edit' to={`/delete/${card.id}`}>Delete</Link>
+              <Route path='/edit/:id' component={props.editItemFromInventory}/>
+              <Route path='/delete/:id' component={props.deleteItemFromInventory}/>
+            </div>
+          </Router>
           <div className='worker'> {card.to} </div> 
         </div>
       </div>
@@ -181,8 +213,14 @@ function Cards3(props) {
         <div className='info'>Priority: {card.priority}</div> 
         <div className='info'>Assigned by: {card.by}</div>
         <div className='emp'>
-          <div id='doneedit' className='edit'> Edit </div>
-          <div id='doneedit' className='edit'> Delete </div>
+          <Router>
+            <div>
+              <Link id='doneedit' className='edit' to={`/edit/${card.id}`}>Edit</Link>
+              <Link id='doneedit' className='edit' to={`/delete/${card.id}`}>Delete</Link>
+              <Route path='/edit/:id' component={props.editItemFromInventory}/>
+              <Route path='/delete/:id' component={props.deleteItemFromInventory}/>
+            </div>
+          </Router>
           <div className='worker'> {card.to} </div> 
         </div>
       </div>

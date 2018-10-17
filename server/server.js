@@ -59,8 +59,22 @@ app.post('/newTask', (req, res) => {
   })
 })
 
-app.delete('/deleteTask/:id', (req, res) => {
-
+app.delete('/delete/:id', (req, res) => {
+  let { id } = req.params;
+  console.log('id', id)
+  Tasks
+  .where({ id })
+  .destroy()
+  .then( () => {
+    return Tasks
+    .fetchAll()
+    .then( result => {
+      res.json(result.serialize())
+    })
+    .catch( err => {
+      console.log('err server DELETE/delete/:id', err)
+    })
+  })
 })
 
 app.listen(PORT, () => {
