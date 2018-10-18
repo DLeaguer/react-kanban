@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+
 function Queue(props) {
   console.log('Queue props', props)
   return props.tasks.filter( result => result.type === 'queue')
@@ -27,4 +29,12 @@ function Queue(props) {
   )
 }
 
-export default Queue
+const mapStateToProps = state => {
+  console.log('mapStateToProps state', state)
+  return {
+    items: state, 
+    lol: 'omgIjustEnteredAPropInThisComponent'
+  }
+}  
+
+export default connect(mapStateToProps)(Queue)

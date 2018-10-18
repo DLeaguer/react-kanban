@@ -8,25 +8,19 @@ import Sample from './components/sample.jsx'
 import About from './components/about.jsx'
 import Category from './components/category.jsx'
 import AddForm from './components/addForm.jsx'
+import { getAllItems } from './actions/actions.js'
+
+import { connect } from 'react-redux'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      tasks: [],
-    }
   }
  
   componentDidMount() {
-    axios
-    .get('/tasks')
-    .then( tasksGet => {
-      console.log('tasks', tasksGet)
-      this.setState( {tasks: tasksGet.data})
-    })
-    .catch( err => {
-      console.log('err axios GET/tasks', err)
-    })
+    console.log('this.props', this.props)
+    // this.props.dispatch( {type: 'GET_ALL_ITEMS'} )
+    this.props.dispatch(getAllItems())
   }
  
   addItemToInventory = (newItem) => {
@@ -63,7 +57,7 @@ class App extends Component {
   }
  
   render() {
-    console.log('App render this.state.tasks', this.state.tasks)
+    console.log('App render this.state', this.state)
     return (
       <div className="App">
         <Router>
@@ -83,7 +77,8 @@ class App extends Component {
             <Route path='/' component={Localhost}/>
             <Route path='/sample' component={Sample}/>
             <Route path='/about/:id' component={About}/>
-            <Route path='/kanban' component={ () => <Category tasks={this.state.tasks}/>}/>
+            <Route path='/kanban' component={ () => <Category/>}/>
+            {/* <Route path='/kanban' component={ () => <Category tasks={this.state.tasks}/>}/> */}
             <Route path='/newTask' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
           </div>
         </Router>
@@ -92,4 +87,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
