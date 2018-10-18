@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-function Queue(props) {
+const Queue = (props) => {
+  // const fakeArray = []  // force array to return fakeArray.filter()
   console.log('Queue props', props)
+  console.log('Queue props.tasks', props.tasks)
   return props.tasks.filter( result => result.type === 'queue')
   .map( card => 
     <div key={card.id} className='items'>
@@ -29,11 +31,15 @@ function Queue(props) {
   )
 }
 
+Queue.defaultProps = {
+  tasks: [],
+}
+
 const mapStateToProps = state => {
-  console.log('mapStateToProps state', state)
+  console.log('Queue mapStateToProps state', state)
   return {
-    items: state, 
-    lol: 'omgIjustEnteredAPropInThisComponent'
+    tasks: state, 
+    lol: 'Queue omgIjustEnteredAPropInThisComponent'
   }
 }  
 

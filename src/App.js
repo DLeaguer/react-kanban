@@ -18,7 +18,7 @@ class App extends Component {
   }
  
   componentDidMount() {
-    console.log('this.props', this.props)
+    console.log('App mount this.props', this.props)
     // this.props.dispatch( {type: 'GET_ALL_ITEMS'} )
     this.props.dispatch(getAllItems())
   }
@@ -78,7 +78,6 @@ class App extends Component {
             <Route path='/sample' component={Sample}/>
             <Route path='/about/:id' component={About}/>
             <Route path='/kanban' component={ () => <Category/>}/>
-            {/* <Route path='/kanban' component={ () => <Category tasks={this.state.tasks}/>}/> */}
             <Route path='/newTask' component={ () => <AddForm addItem={this.addItemToInventory}/>}/>
           </div>
         </Router>

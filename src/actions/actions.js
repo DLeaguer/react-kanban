@@ -50,6 +50,7 @@ export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 
 export const getAllItems = () => {
+  console.log('actions getAllItems', getAllItems)
   return {
     type: GET_ALL_ITEMS,
     payload: initialState

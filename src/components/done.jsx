@@ -1,7 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+
 function Done(props) {
+  // const fakeArray = []
   return props.tasks.filter( result => result.type === 'done')
   .map( card => 
     <div key={card.id} className='items'>
@@ -26,4 +29,16 @@ function Done(props) {
   )
 }
 
-export default Done
+Done.defaultProps = {
+  tasks: [],
+}
+
+const mapStateToProps = state => {
+  console.log('Done mapStateToProps state', state)
+  return {
+    tasks: state, 
+    lol: 'Done omgIjustEnteredAPropInThisComponent'
+  }
+}  
+
+export default connect(mapStateToProps)(Done)

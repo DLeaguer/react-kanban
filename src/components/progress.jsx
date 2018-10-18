@@ -1,7 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+
 function Progress(props) {
+  // const fakeArray = []
   return props.tasks.filter( result => result.type === 'progress')
   .map( card => 
     <div key={card.id} className='items'>
@@ -26,4 +29,16 @@ function Progress(props) {
   )
 }
 
-export default Progress
+Progress.defaultProps = {
+  tasks: [],
+}
+
+const mapStateToProps = state => {
+  console.log('Progress mapStateToProps state', state)
+  return {
+    tasks: state, 
+    lol: 'Progress omgIjustEnteredAPropInThisComponent'
+  }
+}  
+
+export default connect(mapStateToProps)(Progress)

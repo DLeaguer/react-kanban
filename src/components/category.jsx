@@ -3,18 +3,12 @@ import React, {Component} from 'react'
 import Queue from './queue.jsx'
 import Progress from './progress.jsx'
 import Done from './done.jsx'
-import { getAllItems } from '../actions/actions.js'
 
 import { connect } from 'react-redux'
 
 class Category extends Component {
   constructor(props) {
     super(props)
-  }
-
-  componentDidMount() {
-    console.log('Category mount this.props', this.props)
-    this.props.dispatch(getAllItems())
   }
  
   render() {

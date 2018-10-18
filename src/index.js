@@ -11,8 +11,8 @@ import reducers from './reducers/reducers.js'
 const store = createStore(reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ); 
-
-store.dispatch( {type: 'OMG', payload: 'LOLLERSKATES'} )
+console.log('store in index.js', store)
+// store.dispatch( {type: 'OMG', payload: 'LOLLERSKATES'} )
 
 
 ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
