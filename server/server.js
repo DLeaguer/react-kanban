@@ -59,25 +59,65 @@ app.post('/newTask', (req, res) => {
   })
 })
 
-app.delete('/delete/:id', (req, res) => {
-  let { id } = req.params;
-  console.log('id', id)
+app.put('/deleteTask', (req, res) => {
+  console.log('req.body!!!', req.body)
+  console.log('req.body.id!!!', req.body.id)
+  let id = req.body.id;
+  console.log('id!!!', id)
   Tasks
-  .where({ id })
+  // .where({ id })
+  .where('id', id)
   .destroy()
   .then( () => {
+    console.log('\nserver.js Delete is working!!')
     return Tasks
     .fetchAll()
-    .then( result => {
-      res.json(result.serialize())
+    })
+    .then( tasks => {
+      res.json( tasks.serialize())
     })
     .catch( err => {
-      console.log('err server DELETE/delete/:id', err)
+      console.log('err server DELETE/delete', err)
     })
-  })
 })
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`)
 })
 
+
+//PUT
+app.put("/editTask", (req, res) => {
+  console.log("\n---> Backend PUT /editTask");
+  // console.log("\nBackend - PUT req.params:", req.params);
+  console.log("\nBackend - PUT req.body:", req.body);
+
+  // const { id } = req.params;
+  // console.log("\n Check id:", id);
+
+  const updatedTask = {
+    title: req.body.title,
+    body: req.body.body,
+    priority: req.body.priority,
+    status: req.body.status,
+    createdBy: req.body.createdBy,
+    assignedTo: req.body.assignedTo
+  }
+
+  Tasks
+    .where('id', req.body.id)
+    .fetch()
+    .then(results => {
+      console.log("\nBackend - PUT results:", results);
+      results.save(updatedTask);
+      return Tasks.fetchAll()
+    })
+    .then(tasks => {
+      res.json(tasks.serialize());
+    })
+    .catch(err => {
+      console.log("Backend PUT didn't work");
+      res.json("FAILED");
+    })
+
+})

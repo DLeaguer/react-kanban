@@ -1,65 +1,58 @@
-const initialState = [
-  {
-    id: 1,
-    title: '1 Make Better Styles.',
-    body: 'body 1',
-    priority: 'Medium',
-    type: 'queue',
-    by: 'Jon',
-    to: 'Renee'
-  },
-  {
-    id: 2,
-    title: '2 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
-    body: 'body 2',
-    priority: 'Medium',
-    type: 'queue',
-    by: 'Jon',
-    to: 'Renee'
-  },
-  {
-    id: 3,
-    title: '3 Make Better Styles.',
-    body: 'body 3',
-    priority: 'Medium',
-    type: 'progress',
-    by: 'Jon',
-    to: 'Renee'
-  },
-  {
-    id: 4,
-    title: '4 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
-    body: 'body 4',
-    priority: 'Medium',
-    type: 'done',
-    by: 'Jon',
-    to: 'Renee'
-  },
-  {
-    id: 5,
-    title: '5 Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
-    body: 'body 5',
-    priority: 'Medium',
-    type: 'done',
-    by: 'Jon',
-    to: 'Renee'
-  }
-]
+import axios from 'axios'
 
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const EDIT_TASK = 'EDIT_TASK';
 
 export const getAllItems = () => {
-  console.log('actions getAllItems', getAllItems)
-  return {
-    type: GET_ALL_ITEMS,
-    payload: initialState
+  return dispatch => {
+    axios.get('/tasks')
+    .then( response => {
+      console.log('data in actionCreator', response)
+      dispatch({type: GET_ALL_ITEMS, payload: response.data})
+    })
+    .catch( err => {
+      console.log('err actions getAllItems', err)
+    })
   }
 }
 
 export const addItem = (item) => {
-  return {
-    type: ADD_ITEM,
-    payload: item
+  console.log('actions addItem', item)
+  return dispatch => {
+    axios.post('/newTask', item)
+    .then( response => {
+      console.log('response', response)
+      dispatch({type: GET_ALL_ITEMS, payload: response.data})
+    })
+  }
+}
+
+export const deleteItem = (item) => {
+  console.log('actions deleteItem', item)
+  return dispatch => {
+    axios.put('/deleteTask', item)
+    .then( response => {
+      console.log('response', response)
+      dispatch({ type: DELETE_ITEM, payload: response.data })
+    })
+    .catch( err => {
+      console.log('error actions deleteItem', err)
+    })
+  }
+}
+
+export const editTask = (task) => {
+  console.log("\nACTION: editTask:", task);
+  return dispatch => {
+    axios.put("/editTask", task)
+      .then(responseFromDB => {
+        console.log("\nCheck - responseFromDB:", responseFromDB.data)
+        dispatch({ type: EDIT_TASK, payload: responseFromDB.data });
+      })
+      .catch(err => {
+        console.log("ERROR - actions editTask:", err);
+      })
   }
 }

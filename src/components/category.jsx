@@ -7,9 +7,6 @@ import Done from './done.jsx'
 import { connect } from 'react-redux'
 
 class Category extends Component {
-  constructor(props) {
-    super(props)
-  }
  
   render() {
     console.log('Category render this.props', this.props)

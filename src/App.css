@@ -93,12 +93,13 @@ img {
   /* border: 1px solid orange;
   background-color: peachpuff; */
   padding: 4%;
-  margin: 2% 4% 2% 4%;
+  margin: 3% 4% 3% 4%;
 }
 
 #queuecards {
   border: 1px solid orange;
   background-color: peachpuff;
+  box-shadow: 5px 10px 8px 0px #888888;
 }
 
 #queueedit {
@@ -108,6 +109,7 @@ img {
 #progresscards {
   border: 1px solid green;
   background-color: rgb(183, 221, 112);
+  box-shadow: 5px 10px 8px 0px #888888;
 }
 
 #progressedit {
@@ -117,6 +119,7 @@ img {
 #donecards {
   border: 1px solid #3e3e3e;
   background-color: #ffffff;
+  box-shadow: 5px 10px 8px 0px #888888;
 }
 
 #doneedit {

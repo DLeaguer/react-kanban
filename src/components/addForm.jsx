@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { addItem } from '../actions/actions.js'
+import { connect } from 'react-redux'
 
 class AddForm extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class AddForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log('SUBMITTED!!!!!', this.state)
-    this.props.addItem(this.state)
+    this.props.dispatch(addItem(this.state))
   }
 
   handleChange = (e) => {
@@ -67,4 +69,4 @@ class AddForm extends Component {
   }
 }
 
-export default AddForm
+export default connect()(AddForm)

@@ -1,18 +1,18 @@
-import { GET_ALL_ITEMS, ADD_ITEM } from '../actions/actions.js'
+import { GET_ALL_ITEMS, ADD_ITEM, DELETE_ITEM } from '../actions/actions.js'
 
 const reducers = (state = [], action) => {
-  console.log('action from reducers', action)
-  // {type: 'GET_ALL_ITEMS', payload: [{xxx},{xxx},{xxx}]}
+  console.log('Reducers action', action)
+  console.log('Reducers current state', state)
   switch (action.type) {
     case GET_ALL_ITEMS:
-      //do something
-      return action.payload  // [{...}, {...}, {...}]
+      return action.payload
     case ADD_ITEM:
-      //do something
+      return [...state, action.payload]
+    case DELETE_ITEM:
+      return [...state], action.payload;
     default:
       return state
   }
-  // return state
 }
 
 export default reducers

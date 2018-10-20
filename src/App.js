@@ -12,10 +12,13 @@ import { getAllItems } from './actions/actions.js'
 
 import { connect } from 'react-redux'
 
+// let page1Style = {height: '100px', backgroundColor: 'salmon', color: 'white'};
+
+// let pageOne = () => {
+//   return ( <div style={page1Style}>Page 1</div> )
+// }
+
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
  
   componentDidMount() {
     console.log('App mount this.props', this.props)
@@ -39,11 +42,15 @@ class App extends Component {
   deleteItemFromInventory = (deleteItem) => {
     console.log('deleteItemFromInventory deleteItem', deleteItem)
     axios
-    .delete('/delete/:id', deleteItem)
+    .put('/delete', deleteItem)
     .then( results => {
       console.log('deleteItem results', results)
       this.setState( {tasks: results.data} )
     })
+    .catch( err => {
+      console.log('error deleteItemFromInventory', err)
+    })
+      
   }
 
   editItemFromInventory = (editItem) => {
