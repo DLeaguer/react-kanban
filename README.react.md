@@ -110,6 +110,13 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 Create React App is divided into two packages:
 
+- in the terminal 
+    - git clone project
+    - cd to the project folder and git checkout -b development
+    - install `npm install -g create-react-app`
+    - create app `create-react-app .` (the dot at the end tells the terminal to install here instead of creating another folder to install into)
+
+
 - `create-react-app` is a global command-line utility that you use to create new projects.
 - `react-scripts` is a development dependency in the generated projects (including this one).
 

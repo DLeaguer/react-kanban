@@ -50,18 +50,32 @@ class App extends Component {
     .catch( err => {
       console.log('error deleteItemFromInventory', err)
     })
-      
   }
 
-  editItemFromInventory = (editItem) => {
-    console.log('editItemFromInventory editItem', editItem)
+  //Function to edit a task
+  editTask = (taskFromEditForm, id) => {
+    console.log("\n--> Editing task: ", taskFromEditForm);
+    console.log("\n--> Editing task id: ", id);
     axios
-    .put('/edit/:id', editItem)
-    .then( results => {
-      console.log('editItem results', results)
-      this.setState( {tasks: results.data} )
-    })
+      .put("/editTask", taskFromEditForm)
+      .then(editServerData => {
+        console.log("\nCheck - editServerData:", editServerData)
+        this.setState({ tasks: editServerData.data })
+      })
+      .catch(err => {
+        console.log("Error w/axios PUT/editTask:", err);
+      })
   }
+
+  // editItemFromInventory = (editItem) => {
+  //   console.log('editItemFromInventory editItem', editItem)
+  //   axios
+  //   .put('/edit/:id', editItem)
+  //   .then( results => {
+  //     console.log('editItem results', results)
+  //     this.setState( {tasks: results.data} )
+  //   })
+  // }
  
   render() {
     console.log('App render this.state', this.state)
